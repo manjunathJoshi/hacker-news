@@ -29,7 +29,11 @@ export class NewsStoriesComponent implements OnInit {
   public listCategory;
   public items = [];
   public scrollCount = 0;
-  public initialItemCount = 50;
+  public initialItemCount:number= 0;
+  public hashMap:Map<number,true> = new Map();
+  private nextApiCountNumber:number = 3;
+  private sortByVal:string = 'id';
+  private scrollThreshold:number = 30;
 
   constructor(public HackerNewsService:HackerNewsService, public UtilsService:UtilsService,public snackBar:MatSnackBar) {
 
@@ -101,18 +105,23 @@ export class NewsStoriesComponent implements OnInit {
     this.HackerNewsService.getCategoryList(this.selectedValue).subscribe(
       (data)=> {
         this.listCategory = data;
-        this.getInitialdata()
+        this.getInitialdata(0,50)
       });
   }
 
-  getInitialdata(){
+  getInitialdata(from,end){
     let items = [];
-    for(let i=0;i<this.initialItemCount;i++){
+    this.initialItemCount = end
+    for(let i=from;i<end;i++){
       this.HackerNewsService.getcategoryItem(this.listCategory[i]).subscribe(
-        (data)=>{
-          this.items.push(data);
-          this.originalData = this.items
-          this.UtilsService.setCategoryItemData(this.selectedValue,data);
+        (data:any)=>{
+          if(!this.hashMap.get(data.id)){
+            this.items.push(data);
+            this.sortBy(this.sortByVal);
+            this.hashMap.set(data.id,true);
+            this.originalData = this.items
+            this.UtilsService.setCategoryItemData(this.selectedValue,data);
+          }
         }
       );
     }
@@ -121,14 +130,16 @@ export class NewsStoriesComponent implements OnInit {
   scrolled(event){
     this.scrollCount ++;
     console.log("scrolled")
-    if(this.scrollCount === 35){
+    if(this.scrollCount === this.scrollThreshold){
       this.scrollCount = 0;
-      this.initialItemCount+30;
-      this.getInitialdata();
+      const from = this.initialItemCount;
+      const to = this.initialItemCount+this.nextApiCountNumber;
+      this.getInitialdata(from,to);
     }
   }
 
   sortBy(val){
+    this.sortByVal = val;
     const sorted = this.items.sort((a,b)=>a[val] - b[val]);
     this.items = sorted;
   }
