@@ -1,1 +1,220 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/scss/material-theme.scss";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700");
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+// colors
+$title-dark: #424242;
+$title-lite: #757575;
+$secondary-orange: #ff5722;
+
+// margins
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+// mixins
+
+// reusable classes
+.card-shadow {
+  box-shadow: 0 4px 5px #eee;
+}
+.heading{
+  color: #424242;
+  text-transform: capitalize;
+}
+
+
+
+
+// scrollbar style
+.grey-scrollbar{
+    /* Chrome, Safari */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background-color: transparentize($title-lite, 0.8);
+    }
+    ::-webkit-scrollbar-thumb:vertical {
+      height: 30px;
+      background-color: transparentize($title-lite, 0.6);
+      border-radius: 10px;    
+    }
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  background-color: #fafafa;
+  // height: 100vh;
+}
+
+
+.mat-sidenav{
+  min-width: 250px;
+}
+
+
+.header {
+  background-color: white;
+  box-shadow: 0 0 8px #ccc;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  nav {
+    height: 70px;
+    > div {
+      align-items: center;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+  }
+}
+
+.med {
+  font-weight: 500;
+}
+
+.card {
+  .mat-card-header-text {
+    margin-left: 0;
+  }
+  &.mat-card {
+    padding: 8px 16px;
+    border: none;
+    @extend .card-shadow;
+    margin-bottom: 10px;
+  }
+  .mat-card-header .mat-card-title {
+    color: $title-lite;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .mat-card-content {
+    p {
+      font-weight: 500;
+      color: $title-lite;
+    }
+  }
+}
+
+.dash-form {
+  .mat-form-field {
+    width: 100%;
+    .mat-form-field-label-wrapper{
+      font-size: 14px;
+  }
+  }
+}
+
+.mat-badge-medium.mat-badge-after .mat-badge-content {
+  right: 17px;
+  top: 13px;
+  background-color: #4caf50;
+}
+
+
+
+// .mat-drawer-container {
+  // height: 100vh;
+// }
+
+.mat-drawer-side {
+  @extend .card-shadow;
+  border: none;
+  @extend .grey-scrollbar;
+}
+
+.upload-btm-sheet{
+  @extend .grey-scrollbar;
+  position: relative;
+  &.mat-bottom-sheet-container{
+    overflow: hidden;
+  }
+  .mat-list-base{
+    height: calc(100% - 40px);
+    overflow: auto;
+  }
+  .btm-sheet-btns{
+    height: 40px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    display: flex;
+    button{
+      outline: 0;
+      &:first-of-type{
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+
+.custom-toggle-btn{
+  &.mat-button-toggle-group, .mat-button-toggle-standalone{
+    border-radius: 30px;
+}
+.mat-button-toggle{
+  color: $title-lite;
+    &:first-of-type{
+      button{
+      border-right: 1px solid lighten($title-lite, 40%);
+      }
+    }
+}
+.mat-button-toggle-checked{
+  background-color: #FF7043;
+  color: rgb(255, 255, 255);
+}
+.mat-button-toggle-button{
+        outline: 0;
+        font-size: 14px;
+}
+}
+
+.main{
+  margin-top: 20px;
+  padding: 0 15px;
+}
+
+.exp-title {
+  .mat-list-item-content{
+    padding: 0 24px !important;
+  }
+}
+
+.search{
+  .mat-form-field-infix{
+    border-top: 0;
+  }
+}
+
+.mat-progress-spinner circle, .mat-spinner circle{
+  stroke: white;
+}
+.mat-drawer-content{
+  overflow: hidden;
+}

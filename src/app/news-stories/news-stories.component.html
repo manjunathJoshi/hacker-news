@@ -1,0 +1,80 @@
+<div class="main">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-4 mb-10">
+            <div class="row">
+              <div class = "col-sm-5">
+                <form>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select category</mat-label>
+                    <mat-select  [(ngModel)]="selectedValue" [(value)]="selectedValue" name="category" (selectionChange)="changedSelection(selectedValue)">
+                      <mat-option *ngFor="let category of categories" [value]="category.value">
+                        {{category.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </form>
+              </div>
+              <div class = "col-sm-4">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 mb-10">
+
+          </div>
+          <div class="col-sm-4 mb-10">
+            <div class="row">
+              <div class="col-sm-4">
+                <mat-form-field appearance="fill">
+                  <mat-label>Search By</mat-label>
+                  <mat-select  [(ngModel)]="searchCategory" [(value)]="searchCategory" name="category">
+                    <mat-option *ngFor="let category of searchCategories" [value]="category.value">
+                      {{category.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-5">
+                <input type="text" class="form-control left" (keyup)="searchData()" [(ngModel)]="searchQuery" name="searchQuery"
+                placeholder="Search" />
+              </div>
+              <div class="col-sm-3">
+                <button mat-flat-button	class="buttonClass"(click)="reset()" style="background-color:coral">
+                  <mat-label>Reset</mat-label>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <mat-card class="card ticket-card" (scroll)="scrolled($event)" >
+          <table class="table table-responsive content-table">
+            <tr>
+              <th>Id &nbsp;<span class="material-icons" (click)="sortBy('id')">sort_by_alpha</span></th>
+              <th>Title </th>
+              <th>Author</th>
+              <th>Created At&nbsp;<span class="material-icons"(click)="sortBy('time')" >sort_by_alpha</span></th>
+              <th>Score &nbsp;<span class="material-icons" (click)="sortBy('score')">sort_by_alpha</span></th>
+              <th>Url</th>
+            </tr>
+            <tbody>
+              <ng-container *ngFor="let item of items">
+                <tr *ngIf="item">
+                  <td class="word">{{ item?.id }}</td>
+                  <td>{{ item?.title }}</td>
+                  <td>{{ item?.by }}</td>
+                  <td>{{ item?.time | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{ item?.score }}</td>
+                  <td><a href="{{item?.url}}" target="_blank">{{item?.url}}</a></td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
+  
+  

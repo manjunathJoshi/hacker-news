@@ -1,0 +1,20 @@
+.navbar{
+    background-color: #422a81;
+    height: 60px;
+    z-index: 1000;
+
+    .navbar-title{
+        color:white;
+    }
+     h4{
+      color: white;
+      line-height: 19px;
+      margin-bottom: 0;
+      margin-top: 5px;
+    }
+
+}
+.home-container {
+    height: calc(100vh - 40px);
+    margin-top: 60px;
+  }

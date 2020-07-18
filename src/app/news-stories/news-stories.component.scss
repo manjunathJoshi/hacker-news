@@ -1,0 +1,93 @@
+.ticket-card {
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    height: calc(100vh - 230px);
+    
+    overflow-y: scroll;  // &:hover{
+    //   transform: translateY(-1px);
+    //   box-shadow: 0px 5px 8px #ccc;
+    // }
+
+    i {
+      color: white;
+      font-size: 18px;
+    }
+  
+  }
+  
+  .search {
+    float: right;
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+  }
+
+  
+  .content-table {
+    th {
+      &.word {
+        display: flex;
+        input {
+          display: inline-block;
+          margin-left: 10px;
+          width: 150px;
+          height: 27px;
+        }
+      }
+    }
+    td {
+      font-size: 14px;
+      &.actions {
+        width: 11%;
+        button {
+          outline: 0;
+          i {
+            color: #422a81;
+            margin-right: 5px;
+            font-size: 20px;
+          }
+        }
+      }
+  
+      &.word {
+        color: #422a81;
+        font-weight: 600;
+      }
+    }
+  }
+  .mb-10{
+    margin-bottom: 10px;
+  }
+  .selectCategory{
+    border-radius: 20px;
+    width: fit-content;
+  }
+  .buttonClass{
+    margin-left: 20px;;
+  }
+  .searchCategory{
+    width: 30px;
+  }
+  .left{
+    margin-left: 20px;
+  }
+
+  // mat-select{
+  //   background-color: white;
+  // }
+  .color-class{
+    background:#ffcb2a
+  }
+  ::ng-deep .mat-snack-bar-container{
+    color:black !important;
+    background-color: #ffcb2a !important;
+    border-color: #c3e6cb !important;
+  }
+  ::ng-deep .mat-simple-snackbar-action {
+    color: red;
+  }
+  .material-icons{
+    font-size: 15px;
+  }
