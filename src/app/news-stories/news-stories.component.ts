@@ -29,7 +29,7 @@ export class NewsStoriesComponent implements OnInit {
   public listCategory;
   public items = [];
   public scrollCount = 0;
-  public initialItemCount = 30;
+  public initialItemCount = 50;
 
   constructor(public HackerNewsService:HackerNewsService, public UtilsService:UtilsService,public snackBar:MatSnackBar) {
 
@@ -81,15 +81,8 @@ export class NewsStoriesComponent implements OnInit {
     this.getData();
   }
 
-
-
-  changedLimitSelection(val){
-    this.limit = val;
-    this.HackerNewsService.getItemsBycount(val,this.selectedValue);
-  }
-
   getData() {
-    this.snackBar.open('Please wait while we are loading data fro you ','X',{
+    this.snackBar.open('Please wait while we are loading data for you ','',{
       duration:2000,verticalPosition: 'top', horizontalPosition: 'right',  panelClass: ['mat-warn']
     });
     this.items = [];
@@ -128,7 +121,8 @@ export class NewsStoriesComponent implements OnInit {
   scrolled(event){
     this.scrollCount ++;
     console.log("scrolled")
-    if(this.scrollCount === 15){
+    if(this.scrollCount === 35){
+      this.scrollCount = 0;
       this.initialItemCount+30;
       this.getInitialdata();
     }
